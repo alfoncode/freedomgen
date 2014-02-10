@@ -1,4 +1,4 @@
 freedomgen
 ==========
 
-Generador de dominios libres
+Generador de dominios libres en python
