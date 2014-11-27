@@ -1,9 +1,11 @@
-import os
 # -*- coding: utf-8 -*-
+
+import os
 
 extension=".com"
 
 letras=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+
 
 
 contadorCombinaciones=0;
@@ -17,7 +19,8 @@ for r1 in range(0,len(letras)):
 			for r4 in range(0,len(letras)):
 				for r5 in range(0,len(letras)):
 					
-					nombre = letras[r1] + letras[r2] + letras[r3] + letras[r4] + letras[r5]				
+					nombre = letras[r1] + letras[r2] + letras[r3] + letras[r4] + letras[r5]
+					
 					contadorCombinaciones = contadorCombinaciones + 1;
 
 					os.system("whois " + nombre + extension + "> salida.txt")
