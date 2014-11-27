@@ -1,2 +1,0 @@
-Número de combinaciones: 27
-Número de dominios libres: 0
