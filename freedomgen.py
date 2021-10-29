@@ -1,50 +1,24 @@
 # -*- coding: utf-8 -*-
-
 import os
+import time
+from subprocess import PIPE, run
 
-extension=".com"
-
-letras=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-
-
-
-contadorCombinaciones=0;
-contadorLibres=0;
-
-archivoResultado = open("resultado.txt","wr")
-
-for r1 in range(0,len(letras)):
-	for r2 in range(0,len(letras)):
-		for r3 in range(0,len(letras)):
-			for r4 in range(0,len(letras)):
-				for r5 in range(0,len(letras)):
-					
-					nombre = letras[r1] + letras[r2] + letras[r3] + letras[r4] + letras[r5]
-					
-					contadorCombinaciones = contadorCombinaciones + 1;
-
-					os.system("whois " + nombre + extension + "> salida.txt")
-
-					archivoSalida = open("salida.txt","r")
-
-					cadenaArchivo=archivoSalida.read()
-
-					archivoSalida.close()
-
-					os.system("rm salida.txt")
-
-					if (cadenaArchivo.find("No match for \"" + nombre.upper() + extension.upper() + "\".") != -1):
-						print (nombre + extension + " Libre")
-						archivoResultado.write(nombre + extension + " Libre\n")
-						contadorLibres = contadorLibres + 1;
+def out(command):
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True)
+    return result.stdout
 
 
+letras = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+vocales = ["a","e","i","o","u"]
+consonantes = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]
 
+for r1 in range(0,1):
+	for r2 in range(0,1):
+		for r3 in range(0,len(consonantes)):
+			for r4 in range(0,1):
+				for r5 in range(0,1):					
+					nombre = "deli" + consonantes[r3] + "ify"
+					if "aa" not in nombre and "ee" not in nombre and "ii" not in nombre and "oo" not in nombre and "uu" not in nombre:												
+						output = out("whois " + nombre + ".com|grep \"No match for domain\"" + ">> salida.txt")						
+						
 
-print ("Número de combinaciones: " + str(contadorCombinaciones))
-archivoResultado.write("Número de combinaciones: " + str(contadorCombinaciones) + "\n")
-
-print ("Número de dominios libres: " + str(contadorLibres))
-archivoResultado.write("Número de dominios libres: " + str(contadorLibres) + "\n")
-
-archivoResultado.close()
